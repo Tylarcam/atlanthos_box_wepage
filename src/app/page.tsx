@@ -2,27 +2,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Image from '@/components/ui/Image';
 
-// Helper for fade-in animation
-const useFadeIn = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          node.classList.add("opacity-100", "translate-y-0");
-        }
-      },
-      { threshold: 0.1 }
-    );
-    node.classList.add("opacity-0", "translate-y-8", "transition-all", "duration-700");
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-  return ref;
-};
-
 // Stat counter animation
 const useCounter = (end: number, duration: number, prefix = "", suffix = "") => {
   const [value, setValue] = useState(0);
@@ -365,6 +344,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+
       </main>
     </>
   );
